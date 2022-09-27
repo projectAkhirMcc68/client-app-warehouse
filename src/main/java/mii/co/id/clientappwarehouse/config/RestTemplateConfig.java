@@ -21,19 +21,20 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestTemplateConfig {
     
-    @Bean
+  @Bean
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
-        
-//        List<ClientHttpRequestInterceptor> interceptors 
-//                = restTemplate.getInterceptors();
+
+//        List<ClientHttpRequestInterceptor> interceptors
+//          = restTemplate.getInterceptors();
 //        
 //        if (CollectionUtils.isEmpty(interceptors)) {
 //            interceptors = new ArrayList<>();
-//        }     
+//        }
+//        
 //        interceptors.add(new RequestInterceptor());
-                
-        return new RestTemplate();
+//        restTemplate.setInterceptors(interceptors);
+        return restTemplate;
     }
     
     @Bean
