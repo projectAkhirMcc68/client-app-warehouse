@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse 68</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn-icons-png.flaticon.com/512/1256/1256183.png?w=740&t=st=1662271456~exp=1662272056~hmac=f7ee378de8046aae505753475943e833d6a4a9a1b7bdb6e063d288fd02f4cce5" rel="icon">
+
+    <!-- default header name is X-CSRF-TOKEN -->
+    <!-- <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" /> -->
+
+    <!--    start CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <!-- <link th:href="@{/css/login.css}" rel="stylesheet" /> -->
+
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <!--    end CSS-->
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+    <h1 class="logo me-auto"><a href="index.html">MCC 68 Go!!</a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav id="navbar" class="navbar">
+        <ul>
+        <li><a class="nav-link scrollto active" th:href="@{/index}">Home</a></li>
+        <li><a class="nav-link scrollto" th:href="@{/region}">Pengajuan</a></li>
+        <li><a class="nav-link scrollto" th:href="@{/country}">Barang</a></li>
+        <li><a class="nav-link scrollto" th:href="@{/user}">User</a></li>
+        <li><a class="nav-link   scrollto" th:href="@{/employee}">Employee</a></li>
+        <li><a class="getstarted scrollto" th:href="@{/login}">Logout</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+    </div>
+</header><!-- End Header -->
+
+    <!-- start content -->
+    <div layout:fragment="content"></div>
+    <!-- end content -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>MCC 68 GO!!!</h3>
+            <p>
+              Pinggir Jalan <br>
+              Jakarta<br>
+              Indonesia <br><br>
+              <strong>Phone:</strong> +62 1234 5678 910<br>
+              <strong>Email:</strong> Mcc68GO!!!@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Region</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Country</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">User</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Employee</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+    <div class="copyright">
+        &copy; Copyright <strong><span>MCC 68 GO!!</span></strong>. All Rights Reserved
+    </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>     
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
+    <!-- crsf token -->
+    <script th:src="@{js/addCSRFToken.js}"></script>
+    <script th:src="@{js/main.js}"></script>
+    <th:block layout:fragment="script"></th:block>
+    </body>
+</html>

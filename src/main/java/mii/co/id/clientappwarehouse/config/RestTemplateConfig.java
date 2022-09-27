@@ -7,6 +7,7 @@ package mii.co.id.clientappwarehouse.config;
 
 import java.util.ArrayList;
 import java.util.List;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -29,10 +30,14 @@ public class RestTemplateConfig {
 //        
 //        if (CollectionUtils.isEmpty(interceptors)) {
 //            interceptors = new ArrayList<>();
-//        }
-        
+//        }     
 //        interceptors.add(new RequestInterceptor());
                 
         return new RestTemplate();
+    }
+    
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
     }
 }
