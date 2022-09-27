@@ -9,9 +9,12 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import mii.co.id.clientappwarehouse.model.Barang;
 import mii.co.id.clientappwarehouse.service.BarangService;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,10 +39,19 @@ public class ResponseBarangController {
         return barangService.getById(id);
     }
     
-//    @PostMapping
-//    public Barang create(@RequestBody Barang barang) {
-//        
-//    }
+    @PostMapping
+    public Barang create(@RequestBody Barang barang) {
+        return barangService.create(barang);
+    }
     
+    @PutMapping("/{id}")
+    public Barang update(@PathVariable Long id, @RequestBody Barang barang) {
+       return barangService.update(id, barang);
+    }
+    
+    @DeleteMapping("/{id}")
+    public Barang delete(@PathVariable Long id){
+        return barangService.delete(id);
+    }
     
 }

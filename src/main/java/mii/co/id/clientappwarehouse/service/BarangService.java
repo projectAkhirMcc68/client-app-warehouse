@@ -52,7 +52,7 @@ public class BarangService {
                 .getBody();
     }
     
-    public Barang update(Barang barang, Long id) {
+    public Barang update(Long id, Barang barang) {
         return restTemplate.exchange(url.concat("/" + id), HttpMethod.PUT, 
                 new HttpEntity(barang), new ParameterizedTypeReference<Barang>() {
                 })
