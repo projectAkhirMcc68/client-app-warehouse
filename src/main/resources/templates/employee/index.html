@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+
+<div layout:fragment="content">
+    <!-- Start content Here -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">List Of Employee</h2>
+    
+                <!-- tombol create -->
+                    <button type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#createEmployee"
+                    onclick="getRole()">
+                        <i class="bi bi-plus-circle-fill"></i> Create Employee
+                    </button>
+                <!-- end tombol create -->
+    
+                <!-- start table -->
+                <table id="table-employee" class="table table-striped my-3">
+                    <thead class="table-dark mt-3">
+                    <tr>
+                        <th>Id</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Date Of Birth</th>
+                        <!-- <th>Jenis Kelamin</th> -->
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+                <!-- end table -->
+    
+                <!-- star modal create -->
+                <div class="modal fade" id="createEmployee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Create Employee</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Full Name</label>
+                                <input class="form-control" type="text" id="employeeFullName">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Email </label>
+                                <input class="form-control" type="text" id="employeeEmail">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Date Of Birth </label>
+                                <input class="form-control" type="date" id="employeeDate">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Jenis Kelamin </label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected disabled>--Select--</option>
+                                    <option value="Laki-laki" id="employeeJenkel">Laki-laki</option>
+                                    <option value="Perempuan" id="employeeJenkel">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Username</label>
+                                <input class="form-control" type="text" id="employeeUsername">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Password</label>
+                                <input class="form-control" type="password" id="employeePassword">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Region Name</label>
+                                <select id="employeeRole" name="employeeRole" class="form-select" aria-label="Default select example">
+                                    <!-- <option selected disabled>Select Role</option> -->
+                                    <!-- <option id="dropDown"  th:each="region :${regions}"  th:value="${region.id}" th:text="${region.name}"> -->
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="create-employee">Save</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- end modal create -->
+    
+                <!-- start update -->
+                <div class="modal fade" id="updateEmployeeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Create Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="updateId">
+                        <div class="mt-2">
+                            <label class="form-label fw-bold ">Full Name</label>
+                            <input class="form-control" type="text" id="updateFullName">
+                        </div>
+                        <div class="mt-2">
+                            <label class="form-label fw-bold ">Email </label>
+                            <input class="form-control" type="text" id="updateEmail">
+                        </div>
+                        <div class="mt-2">
+                            <label class="form-label fw-bold ">Date Of Birth </label>
+                            <input class="form-control" type="date" id="updateDate">
+                        </div>
+                        <!-- <div class="mt-2">
+                            <label class="form-label fw-bold ">Jenis Kelamin </label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected disabled>--Select--</option>
+                                <option value="Laki-laki" id="updateJenkel">Laki-laki</option>
+                                <option value="Perempuan" id="updateJenkel">Perempuan</option>
+                            </select>
+                        </div> -->
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateEmployee">Update</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+                <!-- end update -->
+    
+                <!-- start modal detail -->
+                <div class="modal fade" id="detailEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="detailemployeelabel">Detail employee</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mt-2">
+                                <label class="form-label fw-bold "> Id</label>
+                                <p id="employee-id">Data Not Found</p>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold "> Username</label>
+                                <p id="employee-username" class="fw-bold fs-5 ">Data Not Found</p>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold "> Full Name</label>
+                                <p id="employee-fullName">Data Not Found</p>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Email</label>
+                                <p id="employee-email">Data Not Found</p>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Birth Date</label>
+                                <p id="employee-date">Data Not Found</p>
+                            </div>
+                            <!-- <div class="mt-2">
+                                <label class="form-label fw-bold ">Jenis Kelamin</label>
+                                <p id="employee-jenkel">Data Not Found</p>
+                            </div> -->
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Role</label>
+                                <p id="employee-role">Data Not Found</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- end modal detail -->
+    
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- End content -->
+</div>
+    <th:block layout:fragment="script">
+        <script th:src="@{js/employee.js}"></script>
+    </th:block>
+</html>

@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 
 /**
  *
@@ -36,6 +38,23 @@ public class PengajuanService {
     
     public Pengajuan getById(Long id){
         return restTemplate.exchange(url.concat("/"+id), HttpMethod.GET,null, new ParameterizedTypeReference<Pengajuan>(){
+        }).getBody();
+    }
+    
+    public Pengajuan create(Pengajuan pengajuan){
+        return restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(pengajuan),new ParameterizedTypeReference<Pengajuan>(){
+        }).getBody();
+    }
+    
+    public Pengajuan update(Long id,Pengajuan pengajuan){
+        return restTemplate.exchange(url.concat("/"+id), HttpMethod.PUT, new HttpEntity<>(pengajuan), new ParameterizedTypeReference<Pengajuan>(){
+            
+        }).getBody();
+    }
+    
+    public Pengajuan delete(Long id){
+        return restTemplate.exchange(url.concat("/"+id), HttpMethod.DELETE, null, new ParameterizedTypeReference<Pengajuan>(){
+            
         }).getBody();
     }
     

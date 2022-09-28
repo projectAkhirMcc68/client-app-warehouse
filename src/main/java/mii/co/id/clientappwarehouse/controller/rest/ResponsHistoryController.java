@@ -6,9 +6,8 @@ package mii.co.id.clientappwarehouse.controller.rest;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import mii.co.id.clientappwarehouse.model.Pengajuan;
-import mii.co.id.clientappwarehouse.service.PengajuanService;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import mii.co.id.clientappwarehouse.model.History;
+import mii.co.id.clientappwarehouse.service.HistoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,23 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @AllArgsConstructor
 @RestController
-@RequestMapping("/pengajuan")
-public class ResponsPengajuanController {
+@RequestMapping("/history")
+public class ResponsHistoryController {
     
-    private PengajuanService pengajuanService;
-    
-    @GetMapping("/getAll")
-    public List<Pengajuan> getAll(){
-        return pengajuanService.getAll();
+    private HistoryService historyService;
+   
+     @GetMapping("/getAll")
+    public List<History> getAll(){
+        return historyService.getAll();
     }
     
     @GetMapping("/getId/{id}")
-    public Pengajuan getById(@PathVariable Long id){
-        return pengajuanService.getById(id);
+    public List<History> getByIdPengajuan(@PathVariable Long id){
+        return historyService.getByIdPenjualan(id);
     }
     
-    @DeleteMapping("/{id}")
-    public Pengajuan delete(@PathVariable Long id){
-        return pengajuanService.delete(id);
-    }
 }
