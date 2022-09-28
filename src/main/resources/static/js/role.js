@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    $('#table-barang').DataTable({
+    $('#table-role').DataTable({
         ajax: {
-            url: '/barang/getAll/',
+            url: '/role/getAll/',
             dataSrc: '',
             datatype: 'JSON'
         },
@@ -9,31 +9,19 @@ $(document).ready(function () {
                 data: 'id'
             },
             {
-                data: 'nama_barang'
-            },
-            {
-                data: 'kategory'
-            },
-            {
-                data: 'stock'
-            },
-            {
-                data: 'harga'
-            },
-            {
-                data: 'tanggal'
+                data: 'name'
             },
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailBarangModal"
+                    return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailRoleModal"
                     onclick="getById(${data.id})"><i class="bi bi-card-heading"></i>
                     </button>
                     
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateBarang"
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateRole"
                     onclick="beforeUpdate(${data.id})"><i class="bi bi-pencil-square"></i></button>
                     
-                    <button type="button" class="btn btn-danger" onclick="deleteBarang(${data.id})"><i class="bi bi-trash3-fill"></i></button>
+                    <button type="button" class="btn btn-danger" onclick="deleteRole(${data.id})"><i class="bi bi-trash3-fill"></i></button>
                     `;
                 }
             }
@@ -43,16 +31,12 @@ $(document).ready(function () {
 
 function getById(id){
     $.ajax({
-    url: "barang/getId/"+id,
+    url: "role/getId/"+id,
     method:"GET",
         datatype:'JSON',
         success: function(result){
-            $('#barang-id').text(`${result.id}`)
-            $('#barang-name').text(`${result.nama_barang}`)
-            $('#barang-kategory').text(`${result.kategory}`)
-            $('#barang-stock').text(`${result.stock}`)
-            $('#barang-harga').text(`${result.harga}`)
-            $('#barang-tanggal').text(`${result.tanggal}`)
+            $('#role-id').text(`${result.id}`)
+            $('#role-name').text(`${result.name}`)
         }
     });
 }
@@ -60,45 +44,33 @@ function getById(id){
 
 function beforeUpdate(id){
     $.ajax({
-        url:"barang/getId/"+id,
+        url:"role/getId/"+id,
         method:"GET",
         datatype:'JSON',
         success: function(result){
             $('#updateId').val(`${result.id}`)
-            $('#updateNamaBarang').val(`${result.nama_barang}`)
-            $('#updateKategory').val(`${result.kategory}`)
-            $('#updateStock').val(`${result.stock}`)
-            $('#updateHarga').val(`${result.harga}`)
-            $('#updateTanggal').val(`${result.tanggal}`)
+            $('#updateRoleName').val(`${result.name}`)
         }
     });
 }    
 
-$('#create-Barang').click(function () {
-    let barangName = $('#barangName').val();
-    let barangKategory = $('#barangKategory').val();
-    let barangStock = $('#barangStock').val();
-    let barangHarga = $('#barangHarga').val();
-    let barangTanggal = $('#barangTanggal').val();
+$('#create-role').click(function () {
+    let roleName = $('#roleName').val();
     $.ajax({
         url: "/barang",
         method: "POST",
         dataType: "JSON",
         contentType: "application/json",
         data: JSON.stringify({
-            name: barangName,
-            kategory: barangKategory,
-            stock: barangStock,
-            harga: barangHarga,
-            tanggal: barangTanggal
+            name: roleName,
         }),
         success: function (result) {
-            $('#createBarang').modal('hide')
-            $('#table-barang').DataTable().ajax.reload()
+            $('#createRole').modal('hide')
+            $('#table-role').DataTable().ajax.reload()
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Barang has been created',
+                title: 'Role has been created',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -106,16 +78,12 @@ $('#create-Barang').click(function () {
     });
 })
 
-$("#update-barang").click(function () {
+$("#updateRole").click(function () {
     let id = $('#updateId').val();
-    let name = $('#updateNamaBarang').val();
-    let kategory = $('updateKategory').val();
-    let stock = $('updateStock').val();
-    let harga = $('updateHarga').val();
-    let tanggal = $('updateTanggal').val();
+    let name = $('#updateRoleName').val();
     Swal.fire({
         title: 'Are you sure?',
-        text: "You won't update this barang!",
+        text: "You won't update this role!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -124,24 +92,20 @@ $("#update-barang").click(function () {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "barang/" + id,
+                url: "role/" + id,
                 method: "PUT",
                 dataType: "JSON",
                 contentType: "application/json",
                 data: JSON.stringify({
                     name: name,
-                    kategory: kategory,
-                    stock: stock,
-                    harga: harga,
-                    tanggal: tanggal
                 }),
                 success: function (result) {
-                    $('#updateBarang').modal('hide')
+                    $('#updateroleModal').modal('hide')
                     $('#table-barang').DataTable().ajax.reload()
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Region has been Updated',
+                        title: 'Role has been Updated',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -151,7 +115,7 @@ $("#update-barang").click(function () {
     })
 })
     
-function deleteBarang(id){
+function deleteRole(id){
     Swal.fire({
         title: 'Are you sure?',
         icon: 'warning',
@@ -162,11 +126,11 @@ function deleteBarang(id){
     }).then((result) => {
         if (result.isConfirmed) {
         $.ajax({
-                url: "/barang/" + id,
+                url: "/role/" + id,
                 method: "DELETE",
                 dataType: "JSON",
                 success: function (result) {
-                    $('#table-barang').DataTable().ajax.reload()
+                    $('#table-role').DataTable().ajax.reload()
                     let timerInterval
                         Swal.fire({
                         title: 'Delted!!',

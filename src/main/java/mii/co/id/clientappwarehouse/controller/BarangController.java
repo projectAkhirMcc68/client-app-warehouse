@@ -55,11 +55,11 @@ public class BarangController {
 //        return "redirect:/barang";
 //    }
     
-    @GetMapping("/update/{id}")
-    public String updateView(Model model, Barang barang, @PathVariable Long id) {
-        model.addAttribute("barang", barangService.getById(id));
-        return "barang/update-form";
-    }
+//    @GetMapping("/update/{id}")
+//    public String updateView(Model model, Barang barang, @PathVariable Long id) {
+//        model.addAttribute("barang", barangService.getById(id));
+//        return "barang/update-form";
+//    }
     
 //    @PutMapping("/{id}")
 //    public String update(Barang barang, @PathVariable Long id) {

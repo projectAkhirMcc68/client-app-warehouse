@@ -39,7 +39,7 @@ public class BarangService {
     }
     
     public Barang create(Barang barang) {
-        return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity(barang),
+        return restTemplate.exchange(url, HttpMethod.POST, new HttpEntity(barang),
                 new ParameterizedTypeReference<Barang>() {
                 })
                 .getBody();
