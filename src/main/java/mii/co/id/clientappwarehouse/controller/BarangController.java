@@ -33,7 +33,6 @@ public class BarangController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("barangs", barangService.getAll());
-        model.addAttribute("name", "Hello jalu");
         return "barang/index";
     }
     
@@ -46,7 +45,7 @@ public class BarangController {
 //    
 //    @GetMapping("/create")
 //    public String createView(Barang barang) {
-//      return "barang/create-form";  
+//      return "barang/";  
 //    }
 //    
 //    @PostMapping
@@ -55,11 +54,11 @@ public class BarangController {
 //        return "redirect:/barang";
 //    }
     
-//    @GetMapping("/update/{id}")
-//    public String updateView(Model model, Barang barang, @PathVariable Long id) {
-//        model.addAttribute("barang", barangService.getById(id));
-//        return "barang/update-form";
-//    }
+    @GetMapping("/update/{id}")
+    public String updateView(Model model, Barang barang, @PathVariable Long id) {
+        model.addAttribute("barang", barangService.getById(id));
+        return "barang/index";
+    }
     
 //    @PutMapping("/{id}")
 //    public String update(Barang barang, @PathVariable Long id) {

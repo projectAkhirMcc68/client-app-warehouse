@@ -6,9 +6,12 @@
 package mii.co.id.clientappwarehouse.controller;
 
 import lombok.AllArgsConstructor;
+import mii.co.id.clientappwarehouse.model.Role;
 import mii.co.id.clientappwarehouse.service.RoleService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -22,7 +25,8 @@ public class RoleController {
     private RoleService roleService;
     
     @GetMapping
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("roles", roleService.getAll());
         return "role/index";
     }
     
@@ -44,11 +48,11 @@ public class RoleController {
 //        return "redirect:/role";
 //    }
     
-//    @GetMapping("/update/{id}")
-//    public String updateView(Model model, Role role, @PathVariable Long id) {
-//        model.addAttribute("role", roleService.getById(id));
-//        return "role/update-form";
-//    }
+    @GetMapping("/update/{id}")
+    public String updateView(Model model, Role role, @PathVariable Long id) {
+        model.addAttribute("role", roleService.getById(id));
+        return "role/index";
+    }
     
 //    @PutMapping("/{id}")
 //    public String update(Role role, @PathVariable Long id) {

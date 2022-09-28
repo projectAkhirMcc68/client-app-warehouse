@@ -18,7 +18,7 @@ $(document).ready(function () {
                     onclick="getById(${data.id})"><i class="bi bi-card-heading"></i>
                     </button>
                     
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateRole"
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateroleModal"
                     onclick="beforeUpdate(${data.id})"><i class="bi bi-pencil-square"></i></button>
                     
                     <button type="button" class="btn btn-danger" onclick="deleteRole(${data.id})"><i class="bi bi-trash3-fill"></i></button>
@@ -57,7 +57,7 @@ function beforeUpdate(id){
 $('#create-role').click(function () {
     let roleName = $('#roleName').val();
     $.ajax({
-        url: "/barang",
+        url: "/role",
         method: "POST",
         dataType: "JSON",
         contentType: "application/json",
@@ -78,7 +78,7 @@ $('#create-role').click(function () {
     });
 })
 
-$("#updateRole").click(function () {
+$("#update-role").click(function () {
     let id = $('#updateId').val();
     let name = $('#updateRoleName').val();
     Swal.fire({
@@ -101,7 +101,7 @@ $("#updateRole").click(function () {
                 }),
                 success: function (result) {
                     $('#updateroleModal').modal('hide')
-                    $('#table-barang').DataTable().ajax.reload()
+                    $('#table-role').DataTable().ajax.reload()
                     Swal.fire({
                         position: 'center',
                         icon: 'success',

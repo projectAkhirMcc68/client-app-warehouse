@@ -86,7 +86,7 @@ $('#create-Barang').click(function () {
         dataType: "JSON",
         contentType: "application/json",
         data: JSON.stringify({
-            name: barangName,
+            nama_barang: barangName,
             kategory: barangKategory,
             stock: barangStock,
             harga: barangHarga,
@@ -129,7 +129,7 @@ $("#update-barang").click(function () {
                 dataType: "JSON",
                 contentType: "application/json",
                 data: JSON.stringify({
-                    name: name,
+                    nama_barang: name,
                     kategory: kategory,
                     stock: stock,
                     harga: harga,
@@ -141,7 +141,7 @@ $("#update-barang").click(function () {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Region has been Updated',
+                        title: 'Barang has been Updated',
                         showConfirmButton: false,
                         timer: 1500
                     })
