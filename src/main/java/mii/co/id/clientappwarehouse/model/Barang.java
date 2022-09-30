@@ -5,7 +5,7 @@
  */
 package mii.co.id.clientappwarehouse.model;
 
-import java.util.Date;
+import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class Barang {
     private Long id;
     private String nama;
     private String kategori;
-    private Integer stok;
-    private Integer harga;
+    private Long stok;
+    private Long harga;
     private Date tanggal;
 }
