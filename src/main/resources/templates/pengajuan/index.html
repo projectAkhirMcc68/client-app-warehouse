@@ -42,28 +42,39 @@
                         <div class="modal-body">
                             <div class="mt-2">
                                 <label class="form-label fw-bold ">Tanggal</label>
-                                <input class="form-control" type="date" id="pengajuanTanggal">
+                                <input class="form-control" type="date" id="createDate">
                             </div>
                             <div class="mt-2">
                                 <label class="form-label fw-bold ">Nama User </label>
-                                <input class="form-control" type="date" id="pengajuanUser">
+                                <input class="form-control" type="number" id="createUserId">
+                            </div>
+                            <!-- <div class="mt-2">
+                                <label class="form-label fw-bold ">Status</label>
+                                <select id="createBarangId" name="createBarangId" class="form-select" aria-label="Default select example">
+                                    </option>
+                                </select>
+                            </div> -->
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">nama barang </label>
+                                <input class="form-control" type="number" id="createBarangId">
                             </div>
                             <div class="mt-2">
-                                <label class="form-label fw-bold ">Status </label>
-                                <input class="form-control" type="text" id="pengajuanStatus">
+                                <label class="form-label fw-bold ">Jumlah Barang </label>
+                                <input class="form-control" type="number" id="createQuantity">
                             </div>
+                            <input type="hidden" id="createStatusId">
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary" id="create-pengajuan">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnCreatePengajuan">Save</button>
                         </div>
-                      </div>
+                    </div>
                     </div>
                 </div>
                 <!-- end modal create -->
     
                 <!-- start update -->
-                <div class="modal fade" id="updatepengajuanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="updatePengajuanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -73,21 +84,30 @@
                     <div class="modal-body">
                         <input type="hidden" id="updateId">
                         <div class="mt-2">
-                            <label class="form-label fw-bold ">Full Name</label>
-                            <input class="form-control" type="text" id="updateFullName">
-                        </div>
-                        <div class="mt-2">
-                            <label class="form-label fw-bold ">Email </label>
-                            <input class="form-control" type="text" id="updateEmail">
-                        </div>
-                        <div class="mt-2">
-                            <label class="form-label fw-bold ">Date Of Birth </label>
+                            <label class="form-label fw-bold" data-date-format="DD/MMM/YYYY">Tanggal </label>
                             <input class="form-control" type="date" id="updateDate">
+                        </div>
+                        <div class="mt-2">
+                            <label class="form-label fw-bold ">User Name</label>
+                            <input class="form-control" type="text" id="updateUsername" disabled readonly>
+                        </div>
+                        <input type="hidden" id="updateUserId">
+
+                        <div class="mt-2">
+                            <label class="form-label fw-bold ">Jumlah Barang</label>
+                            <input class="form-control" type="text" id="updateQuantity" disabled>
+                        </div>
+                        <input type="hidden" id="updateBarangId" value="1">
+                        <div class="mt-2">
+                            <label class="form-label fw-bold ">Status</label>
+                            <select id="updateStatusId" name="updateStatusId" class="form-select" aria-label="Default select example">
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="updatepengajuan">Update</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdatePengajuan">Update</button>
                     </div>
                 </div>
                 </div>
@@ -118,6 +138,10 @@
                             <div class="mt-2">
                                 <label class="form-label fw-bold ">Status Terkini</label>
                                 <p id="pengajuan-status">Data Not Found</p>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Jumlah Barang</label>
+                                <p id="pengajuan-quantity">Data Not Found</p>
                             </div>
                             <div class="mt-2">
                                 <label class="form-label fw-bold d-flex justify-content-center">History</label>

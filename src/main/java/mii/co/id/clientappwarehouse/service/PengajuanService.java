@@ -6,6 +6,7 @@ package mii.co.id.clientappwarehouse.service;
 
 import java.util.List;
 import mii.co.id.clientappwarehouse.model.Pengajuan;
+import mii.co.id.clientappwarehouse.model.dto.request.PengajuanRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.RequestEntity;
 
 /**
  *
@@ -41,16 +41,23 @@ public class PengajuanService {
         }).getBody();
     }
     
-    public Pengajuan create(Pengajuan pengajuan){
-        return restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(pengajuan),new ParameterizedTypeReference<Pengajuan>(){
+    public Pengajuan create(PengajuanRequest pengajuanRequest){
+        return restTemplate.exchange(url.concat("/dto/"), HttpMethod.POST, new HttpEntity<>(pengajuanRequest),new ParameterizedTypeReference<Pengajuan>(){
         }).getBody();
     }
     
-    public Pengajuan update(Long id,Pengajuan pengajuan){
-        return restTemplate.exchange(url.concat("/"+id), HttpMethod.PUT, new HttpEntity<>(pengajuan), new ParameterizedTypeReference<Pengajuan>(){
+    public Pengajuan update(Long id,PengajuanRequest pengajuanRequest){
+//        pengajuanRequest.setId(id);
+        return restTemplate.exchange(url.concat("/"+id), HttpMethod.PUT, new HttpEntity<>(pengajuanRequest), new ParameterizedTypeReference<Pengajuan>(){
             
         }).getBody();
     }
+    
+//    public Pengajuan update(Long id,Pengajuan pengajuan){
+//        return restTemplate.exchange(url.concat("/"+id), HttpMethod.PUT, new HttpEntity<>(pengajuan), new ParameterizedTypeReference<Pengajuan>(){
+//            
+//        }).getBody();
+//    }
     
     public Pengajuan delete(Long id){
         return restTemplate.exchange(url.concat("/"+id), HttpMethod.DELETE, null, new ParameterizedTypeReference<Pengajuan>(){

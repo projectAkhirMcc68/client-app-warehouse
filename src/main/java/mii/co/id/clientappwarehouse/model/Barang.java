@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Barang {
     private Long id;
-    private String nama_barang;
-    private String kategory;
-    private Integer stock;
+    private String nama;
+    private String kategori;
+    private Integer stok;
     private Integer harga;
     private Date tanggal;
 }

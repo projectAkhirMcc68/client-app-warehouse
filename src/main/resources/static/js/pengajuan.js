@@ -24,11 +24,8 @@ $(document).ready(function () {
                     onclick="getById(${data.id}), getHistory(${data.id})"><i class="bi bi-card-heading"></i>
                 </button>
                 
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateCountry"
-                onclick="beforeUpdate(${data.id}),getRegionUpdate()"><i class="bi bi-pencil-square"></i></button>
-
-                <button type="button" class="btn btn-danger" onclick="deletePengajuan(${data.id})"><i class="bi bi-trash3-fill"></i></button>
-                `;
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updatePengajuanModal"
+                onclick="beforeUpdate(${data.id}),getStatus()"><i class="bi bi-pencil-square"></i></button>`;
                 }
             }
         ]
@@ -37,7 +34,7 @@ $(document).ready(function () {
 
 function getById(id) {
     $.ajax({
-        url: "pengajuan/getId/" + id,
+        url: "pengajuan/" + id,
         method: "GET",
         dataType: "JSON",
         success: function (result) {
@@ -45,7 +42,10 @@ function getById(id) {
             $('#pengajuan-tanggal').text(`${result.tanggal}`)
             $('#pengajuan-user').text(`${result.user.username}`)
             $('#pengajuan-status').text(`${result.status.name}`)
+            $('#pengajuan-quantity').text(`${result.quantity}`)
+            console.log(`${result.barang[0].id}`)
         }
+    
     });
 }
 
@@ -56,7 +56,6 @@ function getHistory(id) {
         method:'GET',
         dataType:'JSON',
         success:function(result){
-            console.log(result)
             var text ="";
             $.each(result,function(key,val) {
                 text +=  `<tr>
@@ -74,22 +73,131 @@ function getHistory(id) {
     })
 }
 
-// $.ajax({
-//     url: "/history/getId"+id,
-// }).done((result)=>{
-//     console.log(result.results);
-//     var text = "";
-//     $.each(result.results,function(key,val){
-//         text += `<tr>
-//                     <td>${key+1}</td>
-//                     <td>${val.name}</td>
-//                     <td><button data-toggle="modal" onclick="detailPoke('${val.url}')" data-target="#modalPoke" class="btn btn-warning">Detail</button></td>
-//                 </tr>`;
-//     })
-//     $("#tbodyPoke").html(text);
-// }).fail((error)=>{
-//     console.log(error);
-// });
+function getStatus(){
+    $.ajax({
+        url:"/status/getAll",
+        method:'GET',
+        dataType:'JSON',
+        success:function(result){
+            var text = `<option selected disabled>Select Status</option>`;
+            $.each(result,function(key,val) {
+                text += `<option id="dropDown" value="${val.id}">${val.name}</option>`
+            })
+            $("#updateStatusId").html(text);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+        }
+    })
+    
+}
+
+// start create
+$('#btnCreatePengajuan').click(function (){
+    let id = $('#createId').val()
+    let date =$('#createDate').val()
+    let userId =$('#createUserId').val()
+    let status = $('#createStatusId').val()
+    let quantity = $('#createQuantity').val()
+    let barang = $('#createBarangId').val()
+    $.ajax({
+        type: "POST",
+        url: "/pengajuan/",
+        dataType: "Json",
+        contentType:"application/json",
+        data:JSON.stringify({
+            tanggal:date,
+            userId:userId,
+            statusId:1,
+            quantity:quantity,
+            barangId:barang
+            
+        }),
+        success: function (response) {
+            console.log("succees create")
+            $('#createPengajuan').modal('hide')
+            $('#table-pengajuan').DataTable().ajax.reload()
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Region has been created',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+        }
+    });
+})
+// end create
+
+//Start proses update
+function beforeUpdate(id) {
+    $.ajax({
+        url: "pengajuan/"+id,
+        type:"GET",
+        dataType: "JSON",
+        success: function (result) {
+            $('#updateId').val(`${result.id}`)
+            $('#updateDate').val(`${result.tanggal}`)
+            $('#updateUsername').val(`${result.user.username}`)
+            $('#updateUserId').val(`${result.user.id}`)
+            $('#updateQuantity').val(`${result.quantity}`)
+            $('#updateBarangId').val(`${result.barang[0].id}`)
+        }
+    });
+}
+
+$('#btnUpdatePengajuan').click(function () { 
+    let timerInterval
+    Swal.fire({
+    title: 'Updated!!',
+    html: 'I will close in <b></b> milliseconds.',
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft()
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+    }).then((result) => {
+    let id = $('#updateId').val()
+    let date =$('#updateDate').val()
+    let userId =$('#updateUserId').val()
+    let status = $('#updateStatusId').val()
+    let quantity = $('#updateQuantity').val()
+    let barang = $('#updateBarangId').val()
+    $.ajax({
+        url:"/pengajuan/"+id,
+        method:"PUT",
+        dataType:'json',
+        contentType:"application/json",
+        data:JSON.stringify({
+            id:id,
+            tanggal:date,
+            userId:userId,
+            statusId:status,
+            quantity:quantity,
+            barangId:barang
+        }),
+        success:function(result){
+            console.log("success");
+            $('#updatePengajuanModal').modal('hide')
+            $('#table-pengajuan').DataTable().ajax.reload()
+        }
+    })
+    if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+    }
+    })
+})
+
+// end proses update
+
+
 
 function deletePengajuan(id){
     Swal.fire({
