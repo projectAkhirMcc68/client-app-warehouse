@@ -31,46 +31,44 @@ public class BarangController {
     private BarangService barangService;
     
     @GetMapping
-    public String index(Model model) {
-        model.addAttribute("barangs", barangService.getAll());
-        model.addAttribute("name", "Hello jalu");
+    public String index() {
         return "barang/index";
     }
     
-    @GetMapping("/get-all")
-    @ResponseBody
-    public List<Barang> getAll() {
-        return barangService.getAll();
-    }
-        
-    
-    @GetMapping("/create")
-    public String createView(Barang barang) {
-      return "barang/create-form";  
-    }
-    
-    @PostMapping
-    public String create(Barang barang) {
-        barangService.create(barang);
-        return "redirect:/barang";
-    }
-    
-    @GetMapping("/update/{id}")
-    public String updateView(Model model, Barang barang, @PathVariable Long id) {
-        model.addAttribute("barang", barangService.getById(id));
-        return "barang/update-form";
-    }
-    
-    @PutMapping("/{id}")
-    public String update(Barang barang, @PathVariable Long id) {
-        barangService.update(barang, id);
-        return "redirect:/barang";
-    }
-    
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
-        barangService.delete(id);
-        return "redirect:/barang";
-    }
+//    @GetMapping("/get-all")
+//    @ResponseBody
+//    public List<Barang> getAll() {
+//        return barangService.getAll();
+//    }
+//        
+//    
+//    @GetMapping("/create")
+//    public String createView(Barang barang) {
+//      return "barang/create-form";  
+//    }
+//    
+//    @PostMapping
+//    public String create(Barang barang) {
+//        barangService.create(barang);
+//        return "redirect:/barang";
+//    }
+//    
+//    @GetMapping("/update/{id}")
+//    public String updateView(Model model, Barang barang, @PathVariable Long id) {
+//        model.addAttribute("barang", barangService.getById(id));
+//        return "barang/update-form";
+//    }
+//    
+//    @PutMapping("/{id}")
+//    public String update(Barang barang, @PathVariable Long id) {
+//        barangService.update(barang, id);
+//        return "redirect:/barang";
+//    }
+//    
+//    @DeleteMapping("/{id}")
+//    public String delete(@PathVariable Long id) {
+//        barangService.delete(id);
+//        return "redirect:/barang";
+//    }
     
 }

@@ -5,6 +5,8 @@
 package mii.co.id.clientappwarehouse.model;
 
 import java.sql.Date;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,8 +28,7 @@ public class Employee {
     
     private Date dateOfBirth;
     
-//    private String jenisKelamin;
-    
     private User user;
+
     
 }

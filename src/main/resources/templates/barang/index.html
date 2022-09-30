@@ -14,3 +14,174 @@ and open the template in the editor.
         <div>Testing index barang</div>
     </body>
 </html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+    <div layout:fragment="content">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center my-2 fw-bold fst-italic">List Of Barang</h2>
+                  <!-- tombol create -->
+                    <button type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#createBarang">
+                        <i class="bi bi-plus-circle-fill"></i>
+                        Create Barang
+                    </button>
+                    <!-- end tombol create -->
+                    <table id="table-barang" class="table table-striped my-3">
+                        <thead class="table-dark mt-3">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nama Barang</th>
+                            <th>Kategory</th>
+                            <th>Stock</th>
+                            <th>Harga</th>
+                            <th>Tanggal</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+        
+                        
+        
+                    <!-- start modal detail -->
+                    <div class="modal fade" id="detailBarangModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="detailBaranglabel">Detail Barang</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Barang Id</label>
+                                    <p id="barang-id">Data Not Found</p>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Nama Barang</label>
+                                    <p id="barang-name">Data Not Found</p>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Kategory</label>
+                                    <p id="barang-kategory">Data Not Found</p>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Stock</label>
+                                    <p id="barang-stock">Data Not Found</p>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Harga</label>
+                                    <p id="barang-harga">Data Not Found</p>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Tanggal</label>
+                                    <p id="barang-tanggal">Data Not Found</p>
+                                </div>
+                            </div>
+                        </tbody>
+                    </table>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end modal detail -->
+        
+        
+                    <!-- star modal create -->
+                    <div class="modal fade" id="createBarang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Nama Barang</label>
+                                    <input class="form-control" type="text" id="barangName">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Kategory</label>
+                                    <input class="form-control" type="text" id="barangKategory">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Stock</label>
+                                    <input class="form-control" type="text" id="barangStock">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Harga</label>
+                                    <input class="form-control" type="text" id="barangHarga">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Tanggal</label>
+                                    <input class="form-control" type="date" id="barangTanggal">
+                                </div>
+                                <!-- <div class="mt-2">
+                                    <label class="form-label fw-bold ">Region Name</label>
+                                    <select id="regionId" name="regionId" class="form-select" aria-label="Default select example">
+                                        <option selected disabled>Select your region</option>
+                                        <option id="dropDown"  th:each="region :${regions}"  th:value="${region.id}" th:text="${region.name}">
+                                        </option>
+                                    </select>
+                                </div> -->
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="create-Barang">Simpan</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end modal create -->
+        
+                    <!-- star modal update -->
+                    <div class="modal fade" id="updateBarang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Update Barang</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" id="updateId" >
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Nama Barang</label>
+                                    <input class="form-control" type="text" id="updateNama">
+                                </div>
+                                <!-- <div class="mt-2">
+                                    <label class="form-label fw-bold ">Kategory</label>
+                                    <input class="form-control" type="text" id="updateKategori">
+                                </div> -->
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">kategori</label>
+                                    <select id="updateKategori" name="updateKategori" class="form-select" aria-label="Default select example">
+                                        <option value="electronic">Electronic</option>
+                                        <option value="barang">Barang</option>
+                                    </select>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Stock</label>
+                                    <input class="form-control" type="number" id="updateStok">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Harga</label>
+                                    <input class="form-control" type="number" id="updateHarga">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Tanggal</label>
+                                    <input class="form-control" type="date" id="updateTanggal">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="update-barang">Update</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end modal update -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block layout:fragment="script">
+        <script th:src="@{js/barang.js}"> </script>
+    </th:block>
+</html>

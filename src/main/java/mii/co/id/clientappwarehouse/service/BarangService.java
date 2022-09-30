@@ -38,21 +38,21 @@ public class BarangService {
                 .getBody();
     }
     
-    public Barang create(Barang barang) {
-        return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity(barang),
-                new ParameterizedTypeReference<Barang>() {
-                })
-                .getBody();
-    }
-    
-    public Barang getById(Long id) {
+     public Barang getById(Long id) {
         return restTemplate.exchange(url.concat("/" + id), HttpMethod.GET,
                 null, new ParameterizedTypeReference<Barang>() {
                 })
                 .getBody();
     }
     
-    public Barang update(Barang barang, Long id) {
+    public Barang create(Barang barang) {
+        return restTemplate.exchange(url, HttpMethod.POST, new HttpEntity(barang),
+                new ParameterizedTypeReference<Barang>() {
+                })
+                .getBody();
+    }
+    
+    public Barang update(Long id ,Barang barang) {
         return restTemplate.exchange(url.concat("/" + id), HttpMethod.PUT, 
                 new HttpEntity(barang), new ParameterizedTypeReference<Barang>() {
                 })

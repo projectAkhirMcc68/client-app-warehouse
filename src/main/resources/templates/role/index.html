@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+
+<div layout:fragment="content">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">List Of Role</h2>
+    
+                <!-- tombol create -->
+                    <button type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#createRole">
+                        <i class="bi bi-plus-circle-fill"></i> Create Role
+                    </button>
+                <!-- end tombol create -->
+    
+                <!-- start table -->
+                <table id="table-role" class="table table-striped my-3">
+                    <thead class="table-dark mt-3">
+                    <tr>
+                        <th>Id</th>
+                        <th>name</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+                <!-- end table -->
+    
+                <!-- star modal create -->
+                <div class="modal fade" id="createRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Create Role</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Role Name</label>
+                                <input class="form-control" type="text" id="roleName">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary" id="create-role">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end modal create -->
+    
+                <!-- start update -->
+                <div class="modal fade" id="updateroleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Update Role</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="updateId">
+                        <div class="mt-2">
+                            <label class="form-label fw-bold ">Role Name</label>
+                            <input class="form-control" type="text" id="updateRoleName">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="update-role">Update</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+                <!-- end update -->
+    
+                <!-- start modal detail -->
+                <div class="modal fade" id="detailRoleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="detailRolelabel">Detail Role</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mt-2">
+                                <label class="form-label fw-bold "> Id</label>
+                                <p id="role-id">Data Not Found</p>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold "> Role Name</label>
+                                <p id="role-name">Data Not Found</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- end modal detail -->
+    
+            </div>
+        </div>
+    </div>
+</div>
+<th:block layout:fragment="script">
+    <script th:src="@{js/role.js}"></script>
+</th:block>
+</html>

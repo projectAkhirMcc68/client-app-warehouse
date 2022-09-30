@@ -17,9 +17,6 @@ $(document).ready(function () {
             {
                 data: 'dateOfBirth'
             },
-            // {
-            //     data: 'jenisKelamin'
-            // },
             {
                 data: null,
                 render: function (data, type, row, meta) {
@@ -49,8 +46,8 @@ function getById(id) {
             $('#employee-fullName').text(`${result.fullName}`)
             $('#employee-email').text(`${result.email}`)
             $('#employee-date').text(`${result.dateOfBirth}`)
-            // $('#employee-jenkel').text(`${result.jenisKelamin}`)
             $('#employee-username').text(`${result.user.username}`)
+            console.log(`${result.user.role[0].name}`)
             
         }
     });
@@ -71,24 +68,24 @@ function beforeUpdate(id) {
     });
 }
 
-function getByIdRole(id) {
-    $.ajax({
-        url: "role/"+id,
-        // method:"GET",
-        type:"GET",
-        dataType: "JSON",
-        success: function (result) {
-            $('#employee-role').text(`${result.name}`)
+// function getByIdRole(id) {
+//     $.ajax({
+//         url: "role/getId/"+id,
+//         method:"GET",
+//         dataType: "JSON",
+//         success: function (result) {
+//             $('#employee-role').text(`${result.name}`)
+//             console.log(`${result.name}`)
             
-        }
-    });
-}
+//         }
+//     });
+// }
 
 
 
 function getRole() {
     $.ajax({
-        url:"/role",
+        url:"/role/getAll",
         method:'GET',
         dataType:'JSON',
         success:function(result){

@@ -5,8 +5,6 @@
 package mii.co.id.clientappwarehouse.service;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import mii.co.id.clientappwarehouse.model.Employee;
 import mii.co.id.clientappwarehouse.model.dto.request.EmployeeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +44,7 @@ public class EmployeeService {
     }
     
     public Employee create(EmployeeRequest employeeRequest){
-        return restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(employeeRequest), new ParameterizedTypeReference<Employee>(){
+        return restTemplate.exchange(url.concat("/dto/"), HttpMethod.POST, new HttpEntity<>(employeeRequest), new ParameterizedTypeReference<Employee>(){
             
         }).getBody();
     }

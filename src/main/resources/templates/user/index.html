@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Testing index barang</div>
+    </body>
+</html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+    <div layout:fragment="content">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center my-2 fw-bold fst-italic mt-5">List Of User</h2>
+                    <table id="table-user" class="table table-striped my-3">
+                        <thead class="table-dark mt-3">
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <!-- <th>Name</th> -->
+                            <th>Password</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+        
+                        
+        
+                    <!-- start modal detail -->
+                    <div class="modal fade" id="detailUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="detailUserlabel">Detail Barang</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">User Id</label>
+                                    <p id="user-id">Data Not Found</p>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Username</label>
+                                    <p id="user-username">Data Not Found</p>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Kategory</label>
+                                    <p id="user-password">Data Not Found</p>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Role</label>
+                                    <p id="barang-role">Data Not Found</p>
+                                </div>
+                            </div>
+                        </tbody>
+                    </table>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end modal detail -->
+        
+                    <!-- star modal update -->
+                    <div class="modal fade" id="updateUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Update Barang</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" id="updateId" >
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Username</label>
+                                    <input class="form-control" type="text" id="updateUsername">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Password</label>
+                                    <input class="form-control" type="text" id="updatePassword">
+                                </div>
+                                <!-- <div class="mt-2">
+                                    <label class="form-label fw-bold ">Role</label>
+                                    <input class="form-control" type="text" id="updateRole">
+                                </div> -->
+                                <div class="mt-2">
+                                    <label class="form-label fw-bold ">Role</label>
+                                    <select id="updateRole" name="updateRole" class="form-select text-uppercase" aria-label="Default select example">
+                                        </option>
+                                    </select>
+                                </div>
+                                <!-- <input type="hidden" id="updateRoleId" > -->
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="update-user">Update</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end modal update -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block layout:fragment="script">
+        <script th:src="@{js/user.js}"> </script>
+    </th:block>
+</html>
