@@ -73,6 +73,7 @@ function getHistory(id) {
     })
 }
 
+
 function getStatus(){
     $.ajax({
         url:"/status/getAll",
@@ -84,6 +85,44 @@ function getStatus(){
                 text += `<option id="dropDown" value="${val.id}">${val.name}</option>`
             })
             $("#updateStatusId").html(text);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+        }
+    })
+    
+}
+
+function getUser(){
+    $.ajax({
+        url:"/user/getAll",
+        method:'GET',
+        dataType:'JSON',
+        success:function(result){
+            var text = `<option selected disabled>Select User</option>`;
+            $.each(result,function(key,val) {
+                text += `<option id="dropDown" value="${val.id}">${val.username}</option>`
+            })
+            $("#createUserId").html(text);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+        }
+    })
+    
+}
+
+function getBarang(){
+    $.ajax({
+        url:"/barang/getAll",
+        method:'GET',
+        dataType:'JSON',
+        success:function(result){
+            var text = `<option selected disabled>Select Barang</option>`;
+            $.each(result,function(key,val) {
+                text += `<option id="dropDown" value="${val.id}">${val.nama}</option>`
+            })
+            $("#createBarangId").html(text);
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
             alert("Status: " + textStatus); alert("Error: " + errorThrown); 

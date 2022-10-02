@@ -9,7 +9,7 @@
     
                 <!-- tombol create -->
                     <button type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#createPengajuan"
-                    onclick="getRole()">
+                    onclick="getBarang(),getUser()">
                         <i class="bi bi-plus-circle-fill"></i> Create pengajuan
                     </button>
                 <!-- end tombol create -->
@@ -44,19 +44,21 @@
                                 <label class="form-label fw-bold ">Tanggal</label>
                                 <input class="form-control" type="date" id="createDate">
                             </div>
-                            <div class="mt-2">
+                            <!-- <div class="mt-2">
                                 <label class="form-label fw-bold ">Nama User </label>
                                 <input class="form-control" type="number" id="createUserId">
+                            </div> -->
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Nama User</label>
+                                <select id="createUserId" name="createUserId" class="form-select" aria-label="Default select example">
+                                    </option>
+                                </select>
                             </div>
-                            <!-- <div class="mt-2">
-                                <label class="form-label fw-bold ">Status</label>
+                            <div class="mt-2">
+                                <label class="form-label fw-bold ">Nama Barang</label>
                                 <select id="createBarangId" name="createBarangId" class="form-select" aria-label="Default select example">
                                     </option>
                                 </select>
-                            </div> -->
-                            <div class="mt-2">
-                                <label class="form-label fw-bold ">nama barang </label>
-                                <input class="form-control" type="number" id="createBarangId">
                             </div>
                             <div class="mt-2">
                                 <label class="form-label fw-bold ">Jumlah Barang </label>
