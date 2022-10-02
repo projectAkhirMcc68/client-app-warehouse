@@ -5,6 +5,7 @@
 package mii.co.id.clientappwarehouse.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -23,6 +24,9 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 authorizeRequests()
                  .antMatchers("/login").permitAll()
                  .antMatchers("/**/*.css","/**/*.js").permitAll()
+                 .antMatchers("/user").hasRole("ADMIN")
+                 .antMatchers("/barang").hasRole("ADMIN")
+                 .antMatchers("/role").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

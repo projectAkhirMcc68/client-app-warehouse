@@ -4,6 +4,7 @@
  */
 package mii.co.id.clientappwarehouse.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author USER
  */
 @Controller
+@PreAuthorize("hasRole('ADMIN')")
+//@PreAuthorize("hasAnyRole('USER','ADMIN')")
 @RequestMapping("/user")
 public class UserController {
     

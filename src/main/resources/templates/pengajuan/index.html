@@ -5,15 +5,15 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col">
-                <h2 class="text-center">List Of pengajuan</h2>
-    
+                <h2 class="text-center mt-4">List Of pengajuan</h2>
+                
                 <!-- tombol create -->
                     <button type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#createPengajuan"
                     onclick="getBarang(),getUser()">
                         <i class="bi bi-plus-circle-fill"></i> Create pengajuan
                     </button>
                 <!-- end tombol create -->
-    
+                <h2 class="mt-4"></h2>
                 <!-- start table -->
                 <table id="table-pengajuan" class="table table-striped my-3">
                     <thead class="table-dark mt-3">
@@ -30,7 +30,6 @@
                     </tbody>
                 </table>
                 <!-- end table -->
-    
                 <!-- star modal create -->
                 <div class="modal fade" id="createPengajuan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">

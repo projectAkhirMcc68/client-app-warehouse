@@ -36,16 +36,16 @@
         <ul>
         <li><a class="nav-link scrollto active" th:href="@{/index}">Home</a></li>
         <li><a class="nav-link scrollto" th:href="@{/pengajuan}">Pengajuan</a></li>
-        <li><a class="nav-link scrollto" th:href="@{/barang}">Barang</a></li>
+        <li><a sec:authorize="hasRole('ADMIN')" class="nav-link scrollto" th:href="@{/barang}">Barang</a></li>
         <li><a sec:authorize="hasRole('ADMIN')" class="nav-link scrollto" th:href="@{/user}">User</a></li>
         <li><a class="nav-link scrollto" th:href="@{/employee}">Employee</a></li>
         <li><a sec:authorize="hasRole('ADMIN')" class="nav-link scrollto" th:href="@{/role}">Role</a></li>
+        <li><a class="nav-link scrollto active">Hi |<span th:text="${#authentication.name}"></span></li>
         <!-- <li><a class="getstarted scrollto" th:href="@{/logout}">Logout</a></li> -->
         <li><form th:action="@{/logout}" method="post"><input class="getstarted scrollto text-black" type="submit" value="Logout"></form></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
-
   </div>
 </header><!-- End Header -->
 
