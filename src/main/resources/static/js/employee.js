@@ -115,6 +115,7 @@ $('#create-employee').click(function (){
         type: "POST",
         url: "employee/",
         dataType: "Json",
+        beforeSend: setCSRFToken(),
         contentType:"application/json",
         data:JSON.stringify({
             fullName:name,
@@ -167,6 +168,7 @@ $('#updateEmployee').click(function () {
         url:"/employee/"+id,
         method:"PUT",
         dataType:'json',
+        beforeSend: setCSRFToken(),
         contentType:"application/json",
         data:JSON.stringify({
             fullName:name,
@@ -201,6 +203,7 @@ function deleteEmployee(id){
                 url: "employee/" + id,
                 method: "DELETE",
                 dataType: "JSON",
+                beforeSend: setCSRFToken(),
                 success: function (result) {
                     $('#table-employee').DataTable().ajax.reload()
                     let timerInterval

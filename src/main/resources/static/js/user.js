@@ -97,6 +97,7 @@ $("#update-user").click(function () {
                 url: "user/" + id,
                 method: "PUT",
                 dataType: "JSON",
+                beforeSend: setCSRFToken(),
                 contentType: "application/json",
                 data: JSON.stringify({
                     username: name,
@@ -133,6 +134,7 @@ function deleteRole(id){
                 url: "/role/" + id,
                 method: "DELETE",
                 dataType: "JSON",
+                beforeSend: setCSRFToken(),
                 success: function (result) {
                     $('#table-role').DataTable().ajax.reload()
                     let timerInterval

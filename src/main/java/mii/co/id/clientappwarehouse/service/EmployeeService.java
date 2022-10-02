@@ -7,11 +7,14 @@ package mii.co.id.clientappwarehouse.service;
 import java.util.List;
 import mii.co.id.clientappwarehouse.model.Employee;
 import mii.co.id.clientappwarehouse.model.dto.request.EmployeeRequest;
+import mii.co.id.clientappwarehouse.util.createHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,16 +27,20 @@ public class EmployeeService {
     
     private RestTemplate restTemplate;
     
-    @Autowired
-    public EmployeeService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-    
+    private createHeaders createHeaders;
     
     @Value("${app.baseUrl}/employee")
     private String url;
     
+    @Autowired
+    public EmployeeService(RestTemplate restTemplate, createHeaders createHeaders) {
+        this.restTemplate = restTemplate;
+        this.createHeaders = createHeaders;
+    }
+    
     public  List<Employee> getAll(){
+//        HttpHeaders httpHeaders = new HttpHeaders();
+//        httpHeaders.add("Authorization", "Basic c3VtYXJubzpzdW1hcm5v");
         return restTemplate.exchange(url, HttpMethod.GET,null, new  ParameterizedTypeReference<List<Employee>>(){
         }).getBody();
     }
@@ -58,5 +65,10 @@ public class EmployeeService {
         return restTemplate.exchange(url.concat("/"+id), HttpMethod.DELETE, null , new ParameterizedTypeReference<Employee>(){
         }).getBody();
     }
+    
+//     public HttpHeaders setHeaders() {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        return createHeaders.makeBasicAuth(auth.getName(), auth.getCredentials().toString());
+//    }
     
 }

@@ -69,6 +69,7 @@ $('#create-Barang').click(function () {
         url: "/barang/",
         method: "POST",
         dataType: "JSON",
+        beforeSend: setCSRFToken(),
         contentType: "application/json",
         data: JSON.stringify({
             nama: barangName,
@@ -128,6 +129,7 @@ $("#update-barang").click(function () {
                 url: "/barang/"+id,
                 method: "PUT",
                 dataType: "JSON",
+                beforeSend: setCSRFToken(),
                 contentType: "application/json",
                 data: JSON.stringify({
                     nama: name,
@@ -166,6 +168,7 @@ function deleteBarang(id){
                 url: "/barang/" + id,
                 method: "DELETE",
                 dataType: "JSON",
+                beforeSend: setCSRFToken(),
                 success: function (result) {
                     $('#table-barang').DataTable().ajax.reload()
                     let timerInterval

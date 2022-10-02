@@ -57,6 +57,7 @@ $('#create-role').click(function () {
         url: "/role",
         method: "POST",
         dataType: "JSON",
+        beforeSend: setCSRFToken(),
         contentType: "application/json",
         data: JSON.stringify({
             name: roleName,
@@ -92,6 +93,7 @@ $("#update-role").click(function () {
                 url: "role/" + id,
                 method: "PUT",
                 dataType: "JSON",
+                beforeSend: setCSRFToken(),
                 contentType: "application/json",
                 data: JSON.stringify({
                     name: name,
@@ -126,6 +128,7 @@ function deleteRole(id){
                 url: "/role/" + id,
                 method: "DELETE",
                 dataType: "JSON",
+                beforeSend: setCSRFToken(),
                 success: function (result) {
                     $('#table-role').DataTable().ajax.reload()
                     let timerInterval

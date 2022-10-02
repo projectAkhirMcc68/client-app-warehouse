@@ -143,6 +143,7 @@ $('#btnCreatePengajuan').click(function (){
         type: "POST",
         url: "/pengajuan/",
         dataType: "Json",
+        beforeSend: setCSRFToken(),
         contentType:"application/json",
         data:JSON.stringify({
             tanggal:date,
@@ -213,6 +214,7 @@ $('#btnUpdatePengajuan').click(function () {
         url:"/pengajuan/"+id,
         method:"PUT",
         dataType:'json',
+        beforeSend: setCSRFToken(),
         contentType:"application/json",
         data:JSON.stringify({
             id:id,
@@ -252,6 +254,7 @@ function deletePengajuan(id){
                 url: "pengajuan/" + id,
                 method: "DELETE",
                 dataType: "JSON",
+                beforeSend: setCSRFToken(),
                 success: function (result) {
                     $('#table-pengajuan').DataTable().ajax.reload()
                     let timerInterval
