@@ -19,7 +19,8 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.
+                authorizeRequests()
                  .antMatchers("/login").permitAll()
                  .antMatchers("/**/*.css","/**/*.js").permitAll()
                 .anyRequest().authenticated()
@@ -30,7 +31,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .failureForwardUrl("/login")
                 .permitAll()
                 .and()
-                .logout().permitAll()
+                .logout()
                 .logoutUrl("/logout")
                 .permitAll();
                 

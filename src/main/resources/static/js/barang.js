@@ -56,15 +56,14 @@ function getById(id){
         }
     });
 }
-    
- 
+
 
 $('#create-Barang').click(function () {
-    let barangName = $('#barangName').val()
-    let barangKategory = $('#barangKategory').val()
-    let barangStock = $('#barangStock').val()
-    let barangHarga = $('#barangHarga').val()
-    let barangTanggal = $('#barangTanggal').val()
+    var barangName = $('#barangName').val()
+    var barangKategory = $('#barangKategory').val()
+    var barangStock = $('#barangStock').val()
+    var barangHarga = $('#barangHarga').val()
+    var barangTanggal = $('#barangTanggal').val()
     $.ajax({
         url: "/barang/",
         method: "POST",
@@ -109,12 +108,12 @@ function beforeUpdate(id){
 }   
 
 $("#update-barang").click(function () {
-    let id = $('#updateId').val();
-    let name = $('#updateNama').val();
-    let kategory = $('#updateKategori').val();
-    let stock = $('#updateStok').val();
-    let harga = $('#updateHarga').val();
-    let tanggal = $('#updateTanggal').val();
+    var id = $('#updateId').val()
+    var name = $('#updateNama').val()
+    var kategory = $('#updateKategori').val()
+    var stock = $('#updateStok').val()
+    var harga = $('#updateHarga').val()
+    var tanggal = $('#updateTanggal').val()
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't update this barang!",
@@ -129,8 +128,8 @@ $("#update-barang").click(function () {
                 url: "/barang/"+id,
                 method: "PUT",
                 dataType: "JSON",
-                beforeSend: setCSRFToken(),
                 contentType: "application/json",
+                beforeSend: setCSRFToken(),
                 data: JSON.stringify({
                     nama: name,
                     kategori: kategory,
@@ -163,7 +162,7 @@ function deleteBarang(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-        if (result.isConfirmed) {
+        if (result?.isConfirmed) {
         $.ajax({
                 url: "/barang/" + id,
                 method: "DELETE",
