@@ -20,10 +20,10 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailPengajuanModal"
-                    onclick="getById(${data.id}), getHistory(${data.id})"><i class="bi bi-card-heading"></i>
-                </button>
-                
+                    return `
+                        <button sec:authorize="hasRole('ADMIN')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailPengajuanModal"
+                        onclick="getById(${data.id}), getHistory(${data.id})"><i class="bi bi-card-heading"></i>
+                    </button>
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updatePengajuanModal"
                 onclick="beforeUpdate(${data.id}),getStatus()"><i class="bi bi-pencil-square"></i></button>`;
                 }
@@ -31,6 +31,7 @@ $(document).ready(function () {
         ]
     });
 })
+
 
 function getById(id) {
     $.ajax({

@@ -8,7 +8,7 @@
                 <h2 class="text-center mt-4">List Of pengajuan</h2>
                 
                 <!-- tombol create -->
-                    <button type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#createPengajuan"
+                    <button sec:authorize="hasRole('USER')" type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#createPengajuan"
                     onclick="getBarang(),getUser()">
                         <i class="bi bi-plus-circle-fill"></i> Create pengajuan
                     </button>
@@ -29,6 +29,7 @@
                     
                     </tbody>
                 </table>
+                
                 <!-- end table -->
                 <!-- star modal create -->
                 <div class="modal fade" id="createPengajuan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
